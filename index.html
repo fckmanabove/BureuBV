@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>Бюро БВ</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="is-loading">
+
+<!-- ВСТАВЬТЕ ЭТОТ НОВЫЙ БЛОК ВМЕСТО СТАРОГО ПРЕЛОАДЕРА -->
+<div class="preloader">
+    <!-- Эта обертка будет ограничивать контент пропорциями 16:9 на сверхшироких экранах -->
+    <div class="preloader-content-wrapper">
+
+        <!-- Контейнер для текста, который будет сверху на мобильных -->
+        <div class="preloader-services-top">
+            <span>Нержавеющая сталь</span>
+            <span>Корпусная мебель</span>
+            <span>Столярные изделия</span>
+        </div>
+
+        <!-- Контейнер для центральной анимации (лого и слоган) -->
+        <div class="preloader-central-content">
+            <div class="preloader-logo-row">
+                <img src="img/logo.svg" alt="Логотип Бюро БВ">
+            </div>
+            <div class="preloader-separator"></div>
+            <div class="preloader-tagline">
+                <span>Изделия</span>
+                <span>Индивидуального</span>
+                <span>Изготовления</span>
+            </div>
+        </div>
+
+        <!-- Контейнер для текста, который будет снизу -->
+        <div class="preloader-services-bottom">
+            <span>Латунь</span>
+            <span>Искусственный и натуральный камень</span>
+            <span>Стекло и зеркала</span>
+        </div>
+
+    </div>
+</div>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo"> <!-- Убедитесь, что путь к index.html правильный для каждой страницы -->
+                <picture>
+                    <source media="(max-width: 768px)" srcset="img/logo_portable.svg"> <!-- и здесь -->
+                    <img src="img/logo.svg" alt="Логотип"> <!-- и здесь -->
+                </picture>
+            </a>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    
+        <div class="social-links">
+            <a href="https://wa.me/79165794892?text=Здравствуйте" target="_blank" aria-label="WhatsApp">
+                <img src="img/wa.png" alt="WhatsApp"> <!-- и здесь -->
+            </a>
+            <a href="https://t.me/alexeybasov" target="_blank" aria-label="Telegram">
+                <img src="img/tg.png" alt="Telegram"> <!-- и здесь -->
+            </a>
+            <!-- ВОТ НОВАЯ КНОПКА -->
+            <a href="#" id="email-copy-btn" aria-label="Скопировать email">
+                <img src="img/email.svg" alt="Email"> <!-- и здесь -->
+            </a>
+        </div>
+    </header>
+
+<div class="slider-nav"></div>
+
+<div class="menu-overlay">
+    <div class="menu-panel">
+        <nav class="main-menu">
+            <ul class="menu-column">
+                <li class="menu-title">ПРАКТИКУМ</li>
+                <li><a href="html/services.html">Консалтинг</a></li>
+                <li><a href="html/likbez.html">Ликбез</a></li>
+            </ul>
+            <ul class="menu-column">
+                <li class="menu-title">ПРОЕКТЫ</li>
+                <li class="has-submenu">
+                    <a href="#">Интерьеры <span class="arrow-indicator"></span></a>
+                    <ul class="submenu">
+                        <li><a href="html/project-flavi.html">Салон красоты Флави</a></li>
+                        <li><a href="html/project-lsr.html">Музей Коллекция ЛСР</a></li>
+                    </ul>
+                </li>
+                <li><a href="html/corp-furniture.html">Корпусная мебель</a></li>
+                <li><a href="html/metal.html">Металл</a></li>
+                <li><a href="html/glass.html">Стекло</a></li>
+                <li><a href="html/stone.html">Камень</a></li>
+                <li><a href="html/joinery.html">Столярные изделия</a></li>
+            </ul>
+            <ul class="menu-column">
+                <li class="menu-title">О НАС</li>
+                <li><a href="html/about-us.html">Кто мы такие</a></li>
+                <li><a href="html/contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="menu-contact-email">
+            <a href="tel:+79165794892">+7 (916) 579-48-92</a>
+        <a hre="a.basov@bureaubv.ru">a.basov@bureaubv.ru</a>
+    </div>
+</div>
+    </div>
+</div>
+
+<div id="fullpage-container">
+    <section class="section">
+        <div class="hero-content">
+            <h1>Изделия индивидуального изготовления</h1>
+        </div>
+        <video src="vid/main1.mp4" autoplay loop muted playsinline></video>
+    </section>
+    <section class="section">
+        <div class="hero-content">
+            <h1>От идеи до воплощения</h1>
+        </div>
+        <video src="vid/main2.mp4" autoplay loop muted playsinline></video>
+    </section>
+    <section class="section">
+        <div class="hero-content">
+            <h1>Экспертиза в материалах</h1>
+        </div>
+        <video src="vid/main3.mp4" autoplay loop muted playsinline></video>
+    </section>
+    <section class="section">
+        <div class="hero-content">
+            <h1>Авторский надзор</h1>
+        </div>
+        <video src="vid/main4.mp4" autoplay loop muted playsinline></video>
+    </section>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="js/main.js"></script>
+    <div id="copy-notification">
+        <p>Готово! Почта скопирована в буфер обмена.</p>
+        <p>Так же вы можете прочитать имя почты, нажав на меню.</p>
+    </div>
+</body>
+</html>
