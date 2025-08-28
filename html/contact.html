@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Бюро БВ</title>
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/contact.css"> 
+</head>
+<body>
+    <div class="page-background">
+    <div class="page-overlay"></div>
+</div>
+
+        <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo"> <!-- Убедитесь, что путь к index.html правильный для каждой страницы -->
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../img/logo_portable.svg"> <!-- и здесь -->
+                    <img src="../img/logo.svg" alt="Логотип"> <!-- и здесь -->
+                </picture>
+            </a>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    
+        <div class="social-links">
+            <a href="https://wa.me/79165794892?text=Здравствуйте" target="_blank" aria-label="WhatsApp">
+                <img src="../img/wa.png" alt="WhatsApp"> <!-- и здесь -->
+            </a>
+            <a href="https://t.me/alexeybasov" target="_blank" aria-label="Telegram">
+                <img src="../img/tg.png" alt="Telegram"> <!-- и здесь -->
+            </a>
+            <!-- ВОТ НОВАЯ КНОПКА -->
+            <a href="#" id="email-copy-btn" aria-label="Скопировать email">
+                <img src="../img/email.svg" alt="Email"> <!-- и здесь -->
+            </a>
+        </div>
+    </header>
+        <div class="menu-overlay">
+        <div class="menu-panel">
+            <nav class="main-menu">
+                <ul class="menu-column">
+                    <li class="menu-title">ПРАКТИКУМ</li>
+                    <li><a href="services.html">Консалтинг</a></li>
+                    <li><a href="likbez.html">Ликбез</a></li>
+                </ul>
+                <ul class="menu-column">
+                    <li class="menu-title">ПРОЕКТЫ</li>
+                    <li class="has-submenu">
+                        <a href="#">Интерьеры <span class="arrow-indicator"></span></a>
+                        <ul class="submenu">
+                            <li><a href="project-flavi.html">Салон красоты Флави</a></li>
+                            <li><a href="project-lsr.html">Музей Коллекция ЛСР</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="corp-furniture.html">Корпусная мебель</a></li>
+                    <li><a href="metal.html">Металл</a></li>
+                    <li><a href="glass.html">Стекло</a></li>
+                    <li><a href="stone.html">Камень</a></li>
+                    <li><a href="joinery.html">Столярные изделия</a></li>
+                </ul>
+                <ul class="menu-column">
+                    <li class="menu-title">О НАС</li>
+                    <li><a href="about-us.html">Кто мы такие</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="menu-contact-email">
+                <a href="tel:+79165794892">+7 (916) 579-48-92</a>
+        <a hre="a.basov@bureaubv.ru">a.basov@bureaubv.ru</a>
+    </div>
+</div>
+        </div>
+
+    <main>
+        <div class="contact-page-wrapper">
+            
+            <section class="contact-header">
+                <h1>Всегда на связи</h1>
+                <p>Мы готовы обсудить ваш проект, провести консультацию или просто ответить на интересующие вопросы. </p>
+            </section>
+
+            <section class="contact-details-block">
+                <div class="contact-item">
+                    <div class="title">ТЕЛЕФОН</div>
+                    <div class="value"><a href="tel:+79165794892">+7 (916) 579-48-92</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="title">EMAIL</div>
+                    <div class="value"><a href="a.basov@bureaubv.ru">a.basov@bureaubv.ru</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="title">АДРЕС ПРОИЗВОДСТВА</div>
+                    <div class="value"><span>г. Москва, ул. Проектная, д. 1</span></div>
+                </div>
+            </section>
+
+            <section class="contact-cta">
+                <h2>Хотите увидеть больше?</h2>
+                <div class="cta-buttons">
+                    <a href="project-flavi.html" class="cta-button">Посмотреть проекты</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer-info">
+        <div class="legal-section"><div class="legal-details"><p><strong>Полное наименование:</strong> Общество с ограниченной ответственностью «Бюро БВ»</p><p><strong>ОГРН:</strong> 1234567890123</p><p><strong>ИНН:</strong> 7701234567</p><p><strong>Юридический адрес:</strong> 123456, г. Москва, ул. Проектная, д. 1, офис 101</p></div></div>
+    </footer>
+
+    <div class="custom-scrollbar-track">
+        <div class="custom-scrollbar-thumb"></div>
+    </div>
+
+    <script src="../js/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="../js/project-flavi.js"></script> 
+
+    <div id="copy-notification">
+        <p>Готово! Почта скопирована в буфер обмена.</p>
+        <p>Так же вы можете прочитать имя почты, нажав на меню.</p>
+    </div>
+
+</body>
+</html>

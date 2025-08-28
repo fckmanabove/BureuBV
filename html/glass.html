@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблон категории КББВ</title>
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/products.css"> 
+</head>
+<body>
+
+    <div class="video-background">
+        <div class="video-overlay"></div>
+        <video autoplay loop muted playsinline>
+            <source src="../vid/products-bg.mp4" type="video/mp4">
+        </video>
+    </div>
+        <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo"> <!-- Убедитесь, что путь к index.html правильный для каждой страницы -->
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../img/logo_portable.svg"> <!-- и здесь -->
+                    <img src="../img/logo.svg" alt="Логотип"> <!-- и здесь -->
+                </picture>
+            </a>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    
+        <div class="social-links">
+            <a href="https://wa.me/79165794892?text=Здравствуйте" target="_blank" aria-label="WhatsApp">
+                <img src="../img/wa.png" alt="WhatsApp"> <!-- и здесь -->
+            </a>
+            <a href="https://t.me/alexeybasov" target="_blank" aria-label="Telegram">
+                <img src="../img/tg.png" alt="Telegram"> <!-- и здесь -->
+            </a>
+            <!-- ВОТ НОВАЯ КНОПКА -->
+            <a href="#" id="email-copy-btn" aria-label="Скопировать email">
+                <img src="../img/email.svg" alt="Email"> <!-- и здесь -->
+            </a>
+        </div>
+    </header>
+
+    <div class="menu-overlay">
+        <div class="menu-panel">
+            <nav class="main-menu">
+                <ul class="menu-column">
+                    <li class="menu-title">ПРАКТИКУМ</li>
+                    <li><a href="services.html">Консалтинг</a></li>
+                    <li><a href="likbez.html">Ликбез</a></li>
+                </ul>
+                <ul class="menu-column">
+                    <li class="menu-title">ПРОЕКТЫ</li>
+                    <li class="has-submenu">
+                        <a href="#">Интерьеры <span class="arrow-indicator"></span></a>
+                        <ul class="submenu">
+                            <li><a href="project-flavi.html">Салон красоты Флави</a></li>
+                            <li><a href="project-lsr.html">Музей Коллекция ЛСР</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="corp-furniture.html">Корпусная мебель</a></li>
+                    <li><a href="metal.html">Металл</a></li>
+                    <li><a href="glass.html">Стекло</a></li>
+                    <li><a href="stone.html">Камень</a></li>
+                    <li><a href="joinery.html">Столярные изделия</a></li>
+                </ul>
+                <ul class="menu-column">
+                    <li class="menu-title">О НАС</li>
+                    <li><a href="about-us.html">Кто мы такие</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="menu-contact-email">
+                <a href="tel:+79165794892">+7 (916) 579-48-92</a>
+        <a hre="a.basov@bureaubv.ru">a.basov@bureaubv.ru</a>
+    </div>
+</div>
+        </div>
+    </div>
+    <main>
+        <h1 class="page-title">Шаблон категории КББВ</h1>
+
+        <div class="products-grid">
+
+            <a href="project-template/project-template.html" class="product-item">
+                <img src="../img/gallery_flavi1.png" alt="Название проекта 1">
+                <div class="product-item-title">Это шаблон страницы такого типа</div>
+            </a>
+
+            <a href="project-template/project-template.html" class="product-item">
+                <img src="../img/gallery_flavi2.png" alt="Название проекта 2">
+                <div class="product-item-title">Все сслылки ведут на шаблон</div>
+            </a>
+
+            <a href="project-template/project-template.html" class="product-item">
+                <img src="../img/gallery_flavi3.png" alt="Название проекта 3">
+                <div class="product-item-title">Индивидуального сайта изделия</div>
+            </a>
+            
+            <a href="project-template/project-template.html" class="product-item">
+                <img src="../img/gallery_flavi4.png" alt="Название проекта 4">
+                <div class="product-item-title">/**бабаба**/</div>
+            </a>
+
+        </div>
+    </main>
+<div class="custom-scrollbar-track">
+        <div class="custom-scrollbar-thumb"></div>
+    </div>
+    <script src="../js/lenis.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+    <script src="../js/project-flavi.js"></script> 
+
+    <div id="copy-notification">
+        <p>Готово! Почта скопирована в буфер обмена.</p>
+        <p>Так же вы можете прочитать имя почты, нажав на меню.</p>
+    </div>
+    
+</body>
+</html>
