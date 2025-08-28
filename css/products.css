@@ -1,0 +1,154 @@
+/* --- Стили для видеофона --- */
+
+body {
+    /* Устанавливаем тёмный фон на случай, если видео не загрузится */
+    background-color: var(--background-color);
+}
+
+.video-background {
+    position: fixed; /* Фиксирует фон, он не будет скроллиться */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Помещает видео ЗА ВСЕ остальные элементы */
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    /* Масштабирует видео, чтобы оно заполнило экран без искажений */
+    object-fit: cover; 
+}
+
+.video-overlay {
+    position: absolute; /* Накладывается поверх видео */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Создает эффект затемнения. Можете менять 0.4 на другое значение от 0 до 1. */
+    background-color: rgba(0, 0, 0, 0.74);
+    z-index: 1; /* Убедимся, что затемнение над видео */
+}
+
+/* ---------------------------------- */
+.page-title {
+    /* Стили для главного заголовка страницы (напр. "Корпусная мебель") */
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    /* ИЗМЕНЕНИЕ: Устанавливаем отступы как в адаптивной версии "Ликбеза" */
+    padding: 60px 0 60px 0;
+}
+
+.products-grid {
+    /* Контейнер для сетки проектов */
+    display: grid;
+    /* Адаптивная сетка: 3 колонки на больших экранах, 2 на средних, 1 на мобильных */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 50px; /* Расстояние между карточками */
+    
+    /* Ограничиваем ширину и центрируем, как на других страницах */
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 50px 100px 50px; /* Отступы по бокам и снизу */
+}
+
+.product-item {
+    text-decoration: none;
+    color: var(--main-text-color);
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    /* Этот transition отвечает за плавность при наведении */
+    transition: transform 0.3s ease;
+}
+
+/* НОВОЕ ПРАВИЛО: Когда идет анимация появления, отключаем transition */
+.products-grid.is-animating-in .product-item {
+    transition: none;
+}
+
+.product-item:hover {
+    transform: translateY(-10px); /* Легкий эффект приподнимания при наведении */
+}
+
+.product-item img {
+    width: 100%;
+    height: 300px; /* Фиксированная высота для картинок */
+    object-fit: cover; /* Масштабирует картинку, чтобы она заполнила блок */
+    display: block;
+}
+
+.product-item-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 20px;
+    background-color: #2a2a2a; /* Фон для подписи */
+}
+
+/* --- Стили для кастомного скроллбара --- */
+
+/* 1. Скрываем стандартный скроллбар браузера */
+html {
+    /* Для Firefox */
+    scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+    /* Для Chrome, Safari, Edge */
+    display: none;
+}
+
+/* 2. Стилизуем наш кастомный скроллбар */
+.custom-scrollbar-track {
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    right: 10px;
+    width: 15px;
+    z-index: 999;
+}
+
+.custom-scrollbar-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: grab;
+}
+
+/* Стиль для курсора при перетаскивании */
+body.is-dragging,
+body.is-dragging .custom-scrollbar-thumb {
+    cursor: grabbing;
+    user-select: none;
+}
+
+/* --- АДАПТИВНОСТЬ для страниц категорий --- */
+
+@media (max-width: 768px) {
+    .page-title {
+        padding: 120px 25px 60px 25px;
+        font-size: 2.5rem;
+    }
+    
+    .products-grid {
+        /* Меняем сетку на 1 колонку */
+        grid-template-columns: 1fr;
+        padding: 0 25px 80px 25px;
+        gap: 30px;
+    }
+
+    .product-item img {
+        height: 250px; /* Уменьшим высоту картинки */
+    }
+    
+    .product-item-title {
+        font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,150 @@
+/* --- Стили для страницы отдельного проекта --- */
+
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+
+.project-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    /* Убираем верхний padding, так как за него теперь отвечает margin заголовка */
+    padding: 0 50px 80px 50px; 
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Уменьшаем расстояние между секциями */
+}
+
+.project-hero-background {
+    position: fixed; /* Делаем фон фиксированным */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* На всю высоту экрана */
+    z-index: -1; /* Помещаем за всем контентом */
+    background-size: cover;
+    background-position: center;
+}
+.project-hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Усиливаем градиент, чтобы он был заметнее */
+    background: linear-gradient(to top, rgba(33,33,33,1) 0%, rgba(33,33,33,0.2) 100%);
+}
+
+.project-main-title {
+    font-size: 4rem;
+    font-weight: 800;
+    text-align: center;
+    max-width: 900px;
+    margin: 12vh auto 100px auto; /* Отступ сверху от края окна и 100px снизу до контента */
+    padding: 0 20px; /* Небольшие отступы по бокам на всякий случай */
+}
+
+/* Секция с общим описанием */
+.project-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+.project-overview img {
+    width: 100%;
+    border-radius: 12px;
+}
+.project-overview-text h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+}
+.project-overview-text p {
+    color: #b0b0b0;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* Секция с характеристиками */
+.project-specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+}
+.spec-item .title {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+.spec-item .value {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Галерея изображений */
+.project-gallery h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.gallery-grid img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Навигация "Следующий/Предыдущий" */
+.project-nav {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #444;
+    padding-top: 40px;
+}
+.project-nav a {
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+.project-nav a:hover {
+    color: #fff;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .project-overview, .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Стили для кастомного скроллбара --- */
+.custom-scrollbar-track {
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    right: 10px;
+    width: 15px;
+    z-index: 999;
+}
+
+.custom-scrollbar-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: grab;
+}
+
+/* Стиль для курсора при перетаскивании */
+body.is-dragging,
+body.is-dragging .custom-scrollbar-thumb {
+    cursor: grabbing;
+    user-select: none;
+}

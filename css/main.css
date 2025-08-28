@@ -1,0 +1,966 @@
+/* --- ПОДКЛЮЧЕНИЕ ШРИФТОВ --- */
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Light.woff2') format('woff2');
+    font-weight: 300;
+    /* Light */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Medium.woff2') format('woff2');
+    font-weight: 500;
+    /* Medium */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    /* SemiBold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Bold.woff2') format('woff2');
+    font-weight: 700;
+    /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    /* ExtraBold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../fonts/Mulish-Black.woff2') format('woff2');
+    font-weight: 900;
+    /* Black */
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* --- ГЛОБАЛЬНЫЕ СТИЛИ --- */
+
+:root {
+    --background-color: #212121;
+    --main-text-color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--main-text-color);
+    font-family: 'Mulish', sans-serif;
+    /* <-- Устанавливаем семейство шрифтов */
+    font-weight: 600;
+    /* <-- Устанавливаем толщину SemiBold */
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/* --- СТИЛИ ХЕДЕРА И БУРГЕРА --- */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 100;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.logo img {
+    height: 60px;
+    display: block;
+}
+
+body.menu-is-open .burger-line:first-child {
+    transform: translateY(5.5px) rotate(45deg);
+}
+
+body.menu-is-open .burger-line:last-child {
+    transform: translateY(-5.5px) rotate(-45deg);
+}
+
+body.menu-is-open .site-header {
+    z-index: 1001;
+}
+
+
+/* --- СТИЛИ ВЫДВИЖНОГО МЕНЮ --- */
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.menu-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90%;
+    max-width: 700px;
+    height: 100%;
+    background-color: #2e2e2e;
+    padding: 50px 60px;
+    padding-top: 150px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    /* --- ДОБАВЬТЕ ЭТИ ТРИ СВОЙСТВА --- */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body.menu-is-open {
+    overflow: hidden;
+}
+
+body.menu-is-open .menu-overlay {
+    visibility: visible;
+    opacity: 1;
+}
+
+body.menu-is-open .menu-panel {
+    transform: translateX(0);
+}
+
+.main-menu {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.menu-column {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-title {
+    color: #a0a0a0;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.menu-column a {
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.menu-column a:hover {
+    color: #ffffff;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 25px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submenu a {
+    font-size: 18px;
+    color: #b0b0b0;
+}
+
+.has-submenu.is-open>.submenu {
+    max-height: 200px;
+    margin-top: 20px;
+}
+
+
+/* --- СТИЛИ ДЛЯ СЛАЙДЕРА (под ваш JS) --- */
+
+#fullpage-container {
+    position: fixed;
+    /* Изменено на fixed для фона */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 600ms ease-in-out;
+    z-index: -1;
+}
+
+.section {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* <-- ДОБАВЬТЕ ЭТО */
+}
+
+.section video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* --- СТИЛИ NAV DOTS --- */
+
+.slider-nav {
+    position: fixed;
+    top: 52%;
+    right: 50px;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.dot {
+    width: 5px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 0 1px rgb(255, 255, 255);
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+    height: 35px;
+    background-color: #ffffff;
+}
+
+
+/* --- СТИЛИ ДЛЯ АНИМИРОВАННОЙ СТРЕЛКИ В МЕНЮ --- */
+
+.arrow-indicator {
+    display: inline-block;
+    position: relative;
+    width: 7px;
+    height: 7px;
+    margin-left: 10px;
+    /* Отступ от текста */
+    /* Плавный переход для всей стрелки */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    top: -3px;
+}
+
+
+/* Рисуем две "черточки" стрелки */
+
+.arrow-indicator::before,
+.arrow-indicator::after {
+    content: '';
+    position: absolute;
+    background-color: currentColor;
+    width: 9px;
+    /* Длина каждой линии */
+    height: 2px;
+    border-radius: 1px;
+    /* Устанавливаем общую точку вращения - центр правого края */
+    transform-origin: 100% 50%;
+    /* Центрируем линии по вертикали */
+    top: 4px;
+    right: 0;
+}
+
+
+/* Формируем из черточек идеальную вершину ">" */
+
+.arrow-indicator::before {
+    transform: rotate(45deg);
+}
+
+.arrow-indicator::after {
+    transform: rotate(-45deg);
+}
+
+
+/* Когда меню открыто, поворачиваем ВСЮ стрелку на 90 градусов */
+
+.has-submenu.is-open .arrow-indicator {
+    transform: rotate(90deg);
+}
+
+
+/* --- Стили для кнопки бургер-меню --- */
+
+
+/* --- Стили для кнопки бургер-меню --- */
+
+.burger-menu {
+    /* ИЗМЕНЕНИЕ: Обновленные размеры */
+    width: 32px;
+    height: 16px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.burger-line {
+    /* Стилизация линий */
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+
+/* --- Анимация при наведении (hover) --- */
+
+
+/* Смещаем верхнюю линию на 2px вверх */
+
+body:not(.menu-is-open) .burger-menu:hover .burger-line:nth-child(1) {
+    transform: translateY(-2px);
+}
+
+
+/* Смещаем нижнюю линию на 2px вниз */
+
+body:not(.menu-is-open) .burger-menu:hover .burger-line:nth-child(2) {
+    transform: translateY(2px);
+}
+
+
+/* --- Анимация открытия (превращение в 'X') --- */
+
+
+/*
+ * ИЗМЕНЕНИЕ: Значения translateY были пересчитаны для высоты 16px.
+ * (16px - 3px) / 2 = 6.5px.
+ * Это центрирует линии перед вращением, создавая пропорциональный крестик.
+ */
+
+body.menu-is-open .burger-menu .burger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+body.menu-is-open .burger-menu .burger-line:nth-child(2) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* --- Стили для иконок соцсетей (прикрепленные к окну) --- */
+
+.social-links {
+    /* Позиционирует блок относительно окна браузера */
+    position: fixed;
+    /* Привязка к нижнему краю */
+    bottom: 30px;
+    /* * ИЗМЕНЕНИЕ: Устанавливаем отступ слева в 5%, 
+     * чтобы он точно соответствовал отступу логотипа из main.css
+     */
+    left: calc(50% - 47vh);
+    /* Увеличим z-index, чтобы иконки были поверх всех элементов */
+    z-index: 1000;
+    /* Эти стили остаются без изменений */
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.social-links img {
+    width: 24px;
+    height: auto;
+    display: block;
+}
+
+
+/* --- Стили для email в меню --- */
+
+.menu-contact-email {
+    /* Отступ сверху, чтобы отделить от остальных пунктов */
+    margin-top: 30px;
+    /* Нижняя линия-разделитель */
+    border-bottom: 1px solid rgba(220, 220, 220, 0.3);
+    /* Отступ от текста до линии */
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Расстояние между ними */
+}
+
+
+/* Можно немного изменить стиль самой ссылки, чтобы она отличалась */
+
+.menu-contact-email a {
+    font-size: 18px;
+    /* Немного уменьшим шрифт */
+    color: #b0b0b0;
+    /* Сделаем цвет чуть менее ярким */
+}
+
+
+/* При наведении цвет будет таким же, как у остальных ссылок */
+
+.menu-contact-email a:hover {
+    color: #ffffff;
+}
+
+
+/* --- Individual spacing for menu columns --- */
+
+
+/* Sets the space between the 1st and 2nd column */
+
+.menu-column:nth-child(2) {
+    margin-left: 60px;
+}
+
+
+/* Sets the new, smaller space between the 2nd and 3rd column */
+
+.menu-column:nth-child(3) {
+    margin-left: 20px;
+    /* You can adjust this value */
+}
+
+
+/* --- Adds a line under each menu item (sized to text) --- */
+
+
+/* Применяем стили ко всем ссылкам в колонках и подменю, кроме заголовков */
+
+.menu-column>li:not(.menu-title)>a,
+.submenu>li>a {
+    position: relative;
+    padding-bottom: 1px;
+    display: inline-block;
+}
+
+
+/* Рисуем линию для тех же ссылок */
+
+.menu-column>li:not(.menu-title)>a::after,
+.submenu>li>a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(97, 97, 97, 0.2);
+}
+
+
+/* --- Стили для контента на главной странице --- */
+
+
+/* --- Обновлённые стили для контента на главной странице --- */
+
+.hero-content {
+    position: absolute;
+    bottom: 3vh;
+    /* ИЗМЕНЕНИЕ: Прижимаем к низу, а не к центру по вертикали */
+    left: 50%;
+    transform: translateX(-50%);
+    /* ИЗМЕНЕНИЕ: Убираем вертикальное смещение */
+    z-index: 50;
+    text-align: center;
+    width: 90%;
+    max-width: 750px;
+    /* Уменьшаем макс. ширину для более компактного вида */
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 2.4rem;
+    /* ИЗМЕНЕНИЕ: Размер уменьшен примерно в 2.4 раза */
+    font-weight: 500;
+    margin: 0 0 15px 0;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+    padding-left: 10px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+/* --- СТИЛИ ДЛЯ КНОПОК В СТИЛЕ GLASSMORPHISM --- */
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0);
+    color: #dadedf;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0);
+}
+
+
+/* --- АДАПТИВНОСТЬ (Общие стили) --- */
+
+
+/* Планшеты и большие телефоны (до 900px) */
+
+@media (max-width: 900px) {
+    .site-header .container {
+        padding: 0 25px;
+        /* Уменьшим боковые отступы в хедере */
+    }
+    .logo img {
+        height: 50px;
+        /* Немного уменьшим логотип */
+    }
+    /* Уменьшаем отступы между колонками в меню, чтобы они помещались */
+    .menu-column:nth-child(2) {
+        margin-left: 40px;
+    }
+    .menu-column:nth-child(3) {
+        margin-left: 15px;
+    }
+}
+
+
+/* Мобильные устройства (до 768px) */
+
+@media (max-width: 768px) {
+    /* --- Меню --- */
+    .menu-panel {
+        max-width: 100%;
+        width: 95%;
+        padding: 120px 30px 70px 30px;
+    }
+    .main-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Создаём две равные колонки */
+        gap: 40px;
+        /* Расстояние между всеми элементами */
+    }
+    /* Явно указываем, что второй блок (Проекты) должен
+       занять вторую строку и растянуться на обе колонки */
+    .main-menu .menu-column:nth-child(2) {
+        grid-row: 2;
+        grid-column: 1 / -1;
+        /* Растягиваем от 1-й до последней колонки */
+    }
+    /* Это правило остаётся, чтобы убрать лишние отступы */
+    .menu-column:nth-child(2),
+    .menu-column:nth-child(3) {
+        margin-left: 0;
+    }
+    .menu-column:nth-child(2),
+    .menu-column:nth-child(3) {
+        margin-left: 0;
+        /* Убираем отступы между колонками */
+    }
+    .menu-column a {
+        font-size: 18px;
+        /* Уменьшаем шрифт пунктов меню */
+    }
+    .submenu a {
+        font-size: 16px;
+        /* И подменю */
+    }
+    /* --- Социальные иконки --- */
+    .social-links {
+        left: 5%;
+        /* Прижимаем к тому же краю, что и лого */
+        gap: 20px;
+    }
+    .social-links img {
+        width: 22px;
+    }
+}
+
+
+/* Маленькие мобильные устройства (до 480px) */
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem !important;
+        /* Важно! Уменьшаем все главные заголовки */
+    }
+    h2 {
+        font-size: 2rem !important;
+    }
+    /* --- Главная страница --- */
+    .hero-content h1 {
+        font-size: 2rem !important;
+        /* Отдельная правка для главной */
+        padding-left: 0;
+    }
+    .hero-buttons {
+        gap: 15px;
+        flex-direction: column;
+        /* Кнопки друг под другом */
+    }
+    .cta-button {
+        padding: 12px 30px;
+        width: 100%;
+        box-sizing: border-box;
+        /* Чтобы padding не ломал ширину */
+    }
+    .slider-nav {
+        right: 15px;
+        /* Сдвигаем точки навигации */
+    }
+    .preloader-services-bottom {
+        opacity: 1;
+    }
+    .preloader-services-top {
+        opacity: 1;
+    }
+}
+
+@media screen and (min-aspect-ratio: 16/9) {
+    .menu-panel {
+        /* Задаём ширину как 35% от ширины окна, чтобы она была пропорциональной */
+        width: 50vw;
+        /* Но при этом не даём ей стать меньше оригинальных 700px */
+        min-width: 700px;
+        /* И ограничиваем максимальную ширину, чтобы на 4K мониторах 
+           меню не было гигантским */
+        max-width: 1500px;
+    }
+}
+
+
+/* --- ГЛОБАЛЬНЫЙ ФИКС ДЛЯ СТАБИЛЬНОСТИ МАКЕТА --- */
+
+html {
+    scrollbar-width: none;
+    /* Для Firefox */
+    scrollbar-gutter: stable;
+    /* <-- ДОБАВЬТЕ ЭТУ СТРОКУ */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Для Chrome, Safari, Edge */
+}
+
+
+/* --- Стили для уведомления о копировании почты --- */
+
+#copy-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    /* Начальное положение для анимации "выезда" */
+    background-color: rgba(42, 42, 42, 0.9);
+    backdrop-filter: blur(10px);
+    color: #dcdcdc;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    z-index: 9999;
+    /* Поверх всех элементов */
+    /* Скрываем по умолчанию */
+    opacity: 0;
+    visibility: hidden;
+    /* Плавный переход для появления и исчезновения */
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+}
+
+#copy-notification p {
+    margin: 0;
+}
+
+
+/* Класс, который будет добавляться через JS для показа уведомления */
+
+#copy-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    /* Конечное положение */
+}
+
+
+/* --- НОВЫЕ СТИЛИ ДЛЯ КИНЕМАТОГРАФИЧНОГО ПРЕЛОАДЕРА --- */
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: var(--background-color);
+    display: flex;
+    /* Для центрирования обертки */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition-delay: 0.2s;
+    /* Задержка перед исчезновением фона */
+}
+
+
+/* Обёртка 16:9 для контента на сверхшироких экранах */
+
+.preloader-content-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: calc(100vh * (16 / 9));
+    /* Ограничиваем ширину по высоте */
+    max-height: calc(100vw * (9 / 16));
+    /* Ограничиваем высоту по ширине */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Центральный блок (лого, слоган) */
+
+.preloader-central-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+.preloader-logo-row {
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.preloader-logo-row img {
+    width: 250px;
+}
+
+.preloader-separator {
+    width: 0%;
+    height: 3px;
+    background-color: #dcdcdc54;
+    border-radius: 2px;
+}
+
+.preloader-tagline span {
+    display: block;
+    opacity: 0;
+}
+
+
+/* Контейнеры для текста услуг (ДЕСКТОП) */
+
+.preloader-services-top,
+.preloader-services-bottom {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    opacity: 0;
+}
+
+.preloader-services-top {
+    bottom: 80px;
+    /* Располагаем над нижним блоком */
+}
+
+.preloader-services-bottom {
+    bottom: 30px;
+}
+
+
+/* Начальное состояние для анимации текста */
+
+.preloader-services-top span,
+.preloader-services-bottom span {
+    opacity: 0;
+}
+
+
+/* Логика видимости */
+
+body.is-loading .preloader {
+    opacity: 1;
+    visibility: visible;
+}
+
+body:not(.is-loading) .preloader {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.is-loading>main,
+body.is-loading>header,
+body.is-loading>.slider-nav {
+    opacity: 0;
+}
+
+
+/* --- АДАПТАЦИЯ ПРЕЛОАДЕРА ДЛЯ МОБИЛЬНЫХ --- */
+
+@media (max-width: 768px) {
+    /* Сбрасываем ограничения обертки */
+    .preloader-content-wrapper {
+        max-width: none;
+        max-height: none;
+    }
+    /* Верхний блок текста */
+    .preloader-services-top {
+        top: 30px;
+        left: 25px;
+        bottom: auto;
+        /* Сбрасываем позиционирование снизу */
+        width: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        /* Выравнивание по левому краю */
+        gap: 10px;
+        font-size: 14px;
+        padding: 0;
+        /* Сбрасываем десктопные отступы */
+        opacity: 1;
+    }
+    .preloader-services-top span {
+        text-align: left;
+    }
+    .hero-content {
+        bottom: 7vh;
+    }
+    /* Нижний блок текста */
+    .preloader-services-bottom {
+        bottom: 30px;
+        right: 25px;
+        left: auto;
+        /* Сбрасываем позиционирование слева */
+        width: auto;
+        flex-direction: column;
+        align-items: flex-end;
+        /* Выравнивание по правому краю */
+        gap: 10px;
+        font-size: 14px;
+        opacity: 1;
+    }
+    .preloader-services-bottom span {
+        text-align: right;
+    }
+}
+
+
+/* --- Корректировка положения текста "камень" на десктопе --- */
+
+@media (min-width: 769px) {
+    .preloader-services-bottom span:nth-child(2) {
+        position: relative;
+        left: 50px;
+    }
+}
+
+
+/* --- Корректировка отступа в меню для десктопной версии --- */
+
+@media (min-width: 769px) {
+    .menu-panel {
+        padding-top: 50px;
+        /* Было 150px, уменьшаем на 50px */
+    }
+}
+
+.social-links a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.social-links img {
+    width: 24px;
+    height: auto;
+    display: block;
+}

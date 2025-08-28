@@ -1,0 +1,586 @@
+/* --- ФИНАЛЬНАЯ ВЕРСИЯ FLAVI.CSS --- */
+
+html {
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* --- Стили для горизонтального слайдера (внутри первого слайда) --- */
+
+.horizontal-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.slides-container-h {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+
+.slide-h {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.slide-h video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 0;
+    transition: transform 0.3s ease;
+}
+
+.slider-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-arrow::before,
+.slider-arrow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2px;
+}
+
+.slider-arrow.left::before {
+    left: 12px;
+    transform-origin: left;
+    transform: rotate(55deg);
+}
+
+.slider-arrow.left::after {
+    left: 12px;
+    transform-origin: left;
+    transform: rotate(-55deg);
+}
+
+.slider-arrow.right::before {
+    right: 12px;
+    transform-origin: right;
+    transform: rotate(-55deg);
+}
+
+.slider-arrow.right::after {
+    right: 12px;
+    transform-origin: right;
+    transform: rotate(55deg);
+}
+
+.slider-arrow.left {
+    left: 5%;
+}
+
+.slider-arrow.right {
+    right: 5%;
+}
+
+.slider-nav-h {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+}
+
+.dot-h {
+    width: 12px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 0 1px rgb(255, 255, 255);
+}
+
+.dot-h:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot-h.active {
+    width: 35px;
+    background-color: #ffffff;
+}
+
+
+/* --- Стили для дискретного слайдера (2 слайда) --- */
+
+body.project-page-body {
+    overflow: hidden !important;
+}
+
+.project-page-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.project-slide {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* --- Стили для контента на втором слайде --- */
+
+.content-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 180px 50px;
+    box-sizing: border-box;
+    /* --- ДОБАВЬТЕ ЭТИ СТРОКИ, ЧТОБЫ СКРЫТЬ ПОЛЗУНОК --- */
+    -ms-overflow-style: none;
+    /* IE и Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+
+/* И для Chrome, Safari, Opera */
+
+.content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* "Подложка" для контента */
+
+.project-content {
+    /* ИЗМЕНЕНИЕ: Делаем подложку уже (было 1600px) */
+    max-width: 1400px;
+    width: 100%;
+    height: auto;
+    /* ИЗМЕНЕНИЕ: Делаем подложку значительно выше (было padding: 60px) */
+    padding: 120px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(20, 20, 20, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.project-description {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.project-description h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.project-description p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+}
+
+.project-gallery-grid img {
+    height: 180px;
+    width: auto;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+
+
+/* --- ЕДИНЫЙ БЛОК АДАПТИВНОСТИ --- */
+
+@media (max-width: 768px) {
+    /* Слайдер */
+    .slider-arrow {
+        transform: translateY(-50%) scale(0.67);
+    }
+    .slider-arrow:hover {
+        transform: translateY(-50%) scale(0.75);
+    }
+    .slider-arrow.left {
+        left: 15px;
+    }
+    .slider-arrow.right {
+        right: 15px;
+    }
+    /* Превращаем страницу проекта в свободно скроллящуюся */
+    body.project-page-body {
+        overflow: auto !important;
+    }
+    .project-page-slider {
+        position: static;
+        height: auto;
+        transform: none !important;
+    }
+    .project-slide {
+        height: auto;
+    }
+    .project-slide:first-child .horizontal-slider {
+        height: 100vh;
+    }
+    /* ИЗМЕНЕНИЕ 3: Адаптируем отступы для мобильных */
+    .content-wrapper {
+        padding: 60px 20px;
+        /* Уменьшаем отступы для фона */
+        align-items: flex-start;
+        /* На мобильных прижимаем к верху */
+    }
+    .project-content {
+        padding: 30px 25px;
+        /* Уменьшаем отступы для подложки */
+        overflow-y: visible;
+    }
+    .project-description {
+        margin-bottom: 40px;
+    }
+    .project-description h2 {
+        font-size: 2rem;
+    }
+    .project-gallery-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .project-gallery-grid img {
+        height: auto;
+        width: 100%;
+    }
+    .project-slide:nth-child(2) {
+        height: 100vh;
+    }
+    .slider-nav-h {
+        top: 4.4vh;
+        bottom: auto;
+    }
+}
+
+
+/* Стиль для клона в увеличенном состоянии */
+
+.expanded-image-clone {
+    position: absolute;
+    /* Обязательно для позиционирования внутри подложки */
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: zoom-out;
+    /* Меняем курсор, чтобы намекнуть на действие "закрыть" */
+    /* Ширину, высоту, top и left теперь полностью контролирует JavaScript */
+}
+
+
+/* 3. Этот класс остается без изменений */
+
+.is-hidden-original {
+    visibility: hidden;
+}
+
+
+/* --- Стили для нового "CENTERED" слайдера --- */
+
+
+/* 1. Основной контейнер */
+
+
+/* --- Стили для ПРОСТОГО и НАДЕЖНОГО слайдера --- */
+
+
+/* 1. Основной контейнер */
+
+.gallery-slider {
+    position: relative;
+    /* Для позиционирования стрелок */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+    /* Отступы для стрелок */
+    box-sizing: border-box;
+}
+
+
+/* 2. "Окно" просмотра */
+
+.gallery-slider-wrapper {
+    overflow: hidden;
+    /* Критически важное свойство: обрезает все лишнее */
+    width: 100%;
+}
+
+
+/* 3. Движущаяся "лента" */
+
+.gallery-slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Плавный переход */
+}
+
+
+/* 4. Слайды (все одинаковые) */
+
+
+/* 4. Слайды (теперь это контейнеры-обертки) */
+
+.gallery-slide {
+    flex-shrink: 0;
+    width: calc((100% - 60px) / 4);
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    border: 2px solid #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    /* ИЗМЕНЕНИЕ 1: Скрываем все, что выходит за пределы рамки */
+    overflow: hidden;
+}
+
+
+/* Правило для наведения на контейнер */
+
+.gallery-slide:hover {
+    border-color: #ffffff;
+    /* Рамка становится ярко-белой */
+}
+
+
+/* Стили для самого изображения ВНУТРИ контейнера */
+
+.gallery-slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ИЗМЕНЕНИЕ 2: Плавность для увеличения картинки */
+    transition: transform 0.3s ease;
+}
+
+
+/* ИЗМЕНЕНИЕ 3: При наведении на РОДИТЕЛЬСКИЙ контейнер, увеличиваем КАРТИНКУ */
+
+.gallery-slide:hover .gallery-slide-image {
+    transform: scale(1.1);
+    /* Увеличиваем изображение на 10% */
+}
+
+.slider-arrow-gallery {
+    /* ... оставляем как есть, но меняем позиционирование */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    /* ... остальные стили стрелок ... */
+}
+
+.slider-arrow-gallery.prev {
+    left: 20px;
+    /* Сдвигаем внутрь */
+    top: 68px;
+}
+
+.slider-arrow-gallery.next {
+    right: 20px;
+    /* Сдвигаем внутрь */
+    top: 70px;
+}
+
+
+/* ... остальные стили для ::before, ::after, :hover ... */
+
+
+/* ВСТАВЬТЕ ЭТОТ КОД ВМЕСТО ВСЕГО СТАРОГО БЛОКА СТРЕЛОК */
+
+
+/* 5. Стили для стрелок (исправленная версия) */
+
+.slider-arrow-gallery {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 0;
+    transition: transform 0.2s ease;
+}
+
+.slider-arrow-gallery:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slider-arrow-gallery::before,
+.slider-arrow-gallery::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+
+/* --- ЕДИНЫЙ БЛОК ДЛЯ ЛЕВОЙ СТРЕЛКИ --- */
+
+.slider-arrow-gallery.prev {
+    left: 0;
+    /* Позиционируем саму кнопку */
+}
+
+.slider-arrow-gallery.prev::before {
+    left: 10px;
+    /* Позиционируем "палочки" внутри кнопки */
+    transform-origin: left;
+    transform: rotate(65deg);
+}
+
+.slider-arrow-gallery.prev::after {
+    left: 10px;
+    /* Позиционируем "палочки" внутри кнопки */
+    transform-origin: left;
+    transform: rotate(-65deg);
+}
+
+
+/* --- ЕДИНЫЙ БЛОК ДЛЯ ПРАВОЙ СТРЕЛКИ --- */
+
+.slider-arrow-gallery.next {
+    right: 0;
+    /* Позиционируем саму кнопку */
+}
+
+.slider-arrow-gallery.next::before {
+    right: 10px;
+    /* Позиционируем "палочки" внутри кнопки */
+    transform-origin: right;
+    transform: rotate(-65deg);
+}
+
+.slider-arrow-gallery.next::after {
+    right: 10px;
+    /* Позиционируем "палочки" внутри кнопки */
+    transform-origin: right;
+    transform: rotate(65deg);
+}
+
+
+/* Вспомогательный класс для "бесшовного" перехода в бесконечном слайдере */
+
+.no-transition {
+    transition: none !important;
+}
+
+
+/* --- Стили для навигации (точек) галереи (ИСПРАВЛЕННАЯ ВЕРСИЯ) --- */
+
+.gallery-slider-nav {
+    position: relative;
+    /* Убираем абсолютное позиционирование */
+    display: flex;
+    justify-content: center;
+    /* Центрируем точки */
+    gap: 15px;
+    margin-top: 25px;
+    /* Добавляем отступ сверху от картинок */
+    padding: 0;
+    background-color: transparent;
+}
+
+.gallery-dot {
+    width: 12px;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Возвращаем рамку для видимости на любом фоне */
+    box-shadow: 0 0 0 1px rgb(255, 255, 255);
+}
+
+.gallery-dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.gallery-dot.active {
+    width: 35px;
+    background-color: #ffffff;
+}
+
+
+/* --- АДАПТАЦИЯ ГАЛЕРЕИ ДЛЯ МОБИЛЬНЫХ --- */
+
+@media (max-width: 768px) {
+    /* 1. Убираем боковые отступы у самого контейнера */
+    .gallery-slider {
+        padding: 0;
+    }
+    /* 2. Делаем так, чтобы был виден один слайд */
+    .gallery-slide {
+        /* Каждый слайд занимает 90% ширины экрана */
+        width: 90%;
+        /* Добавляем отступ справа, чтобы слайды не слипались */
+        margin-right: 15px;
+    }
+    /* 3. Чтобы первый и последний слайды были по центру, добавляем отступ треку */
+    .gallery-slider-track {
+        padding: 0 5%;
+        /* 5% слева и 5% справа = (100% - 90% ширины слайда) / 2 */
+        gap: 0;
+        /* Отключаем gap, так как используем margin */
+    }
+    /* 4. Сделаем стрелки чуть менее заметными, т.к. главный способ - свайп */
+    .slider-arrow-gallery {
+        opacity: 0.8;
+        transform: translateY(-50%) scale(0.8);
+    }
+    .slider-arrow-gallery.prev {
+        left: -5px;
+    }
+    .slider-arrow-gallery.next {
+        right: -5px;
+    }
+    /* 5. Позиционируем точки НАД слайдером */
+    .gallery-slider-nav {
+        top: -190px;
+        /* Размещаем НАД слайдером, используя отрицательный top */
+        /* Убираем фон и отступы, так как они больше не нужны */
+        background-color: transparent;
+        padding: 0;
+    }
+}

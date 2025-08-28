@@ -1,0 +1,256 @@
+/* --- Новые стили для страницы "Контакты" --- */
+
+/* Скрываем стандартный скроллбар браузера */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+/* Фон со случайным изображением */
+.contact-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+/* Затемнение для фона */
+.contact-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Обертка для всего контента */
+.contact-page-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 150px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем всё по горизонтали */
+    gap: 80px;
+}
+
+/* Заголовок страницы */
+.contact-header {
+    text-align: center;
+}
+.contact-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+.contact-header p {
+    font-size: 1.5rem;
+    color: #b0b0b0;
+    max-width: 800px;
+}
+
+/* Блок с основной контактной информацией */
+.contact-details-block {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    width: 100%;
+
+    /* Эффект матового стекла */
+    background: rgba(42, 42, 42, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item .title {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.contact-item .value {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.contact-item .value a {
+    color: #dcdcdc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-item .value a:hover {
+    color: #fff;
+}
+
+/* Секция с кнопками (Призыв к действию) */
+.contact-cta {
+    text-align: center;
+}
+.contact-cta h2 {
+    font-size: 2.5rem;
+    margin: 0 0 35px 0;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Стили для кнопок в стиле Glassmorphism */
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #DADEDF;
+
+    transition: all 0.3s ease;
+}
+.cta-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 900px) {
+    .contact-details-block {
+        flex-direction: column;
+    }
+}
+
+/* --- Стили для футера с юридической информацией --- */
+
+.site-footer-info {
+    max-width: 1400px; /* Ограничим ширину для больших экранов */
+    margin: 100px auto 50px auto; /* Отступы: сверху, по бокам (авто), снизу */
+    padding: 40px 50px; /* Внутренние отступы: 40px сверху/снизу, 50px по бокам */
+    background-color: #1a1a1a;
+    border-radius: 25px; /* Ваше скругление */
+}
+
+.site-footer-info .legal-section .section-title {
+    display: none; /* Скроем заголовок "ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ", он в футере не нужен */
+}
+
+.site-footer-info .legal-details {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    line-height: 1.8;
+}
+
+.site-footer-info .legal-details p {
+    margin: 5px 0;
+}
+
+.site-footer-info .legal-details strong {
+    color: #dcdcdc;
+    font-weight: 600;
+}
+
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+}
+
+.page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Можете менять значение 0.7 для силы затемнения */
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+/* --- АДАПТИВНОСТЬ для "Контакты" --- */
+
+@media (max-width: 900px) {
+    .contact-page-wrapper {
+        padding: 120px 25px;
+        gap: 60px;
+    }
+
+    .contact-header h1 {
+        font-size: 2.8rem;
+    }
+    .contact-header p {
+        font-size: 1.2rem;
+    }
+
+    .contact-details-block {
+        flex-direction: column; /* Это правило уже было, оставляем */
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .contact-item .value {
+        font-size: 1.2rem;
+    }
+    
+    .contact-cta h2 {
+        font-size: 2rem;
+    }
+    
+    .site-footer-info {
+        padding: 30px 25px;
+        margin: 60px auto 40px auto;
+    }
+}
+.custom-scrollbar-track {
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    right: 10px;
+    width: 15px;
+    z-index: 999;
+}
+
+.custom-scrollbar-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    cursor: grab;
+}
+
+/* Стиль для курсора при перетаскивании */
+body.is-dragging,
+body.is-dragging .custom-scrollbar-thumb {
+    cursor: grabbing;
+    user-select: none;
+}
+
+@media (max-width: 480px) {
+    .cta-buttons {
+        flex-direction: column;
+    }
+    .cta-button {
+        width: 100%;
+    }
+}
