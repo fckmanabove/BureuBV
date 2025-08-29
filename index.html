@@ -44,33 +44,34 @@
     </div>
 </div>
 
-    <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="logo"> <!-- Убедитесь, что путь к index.html правильный для каждой страницы -->
-                <picture>
-                    <source media="(max-width: 768px)" srcset="img/logo_portable.svg"> <!-- и здесь -->
-                    <img src="img/logo.svg" alt="Логотип"> <!-- и здесь -->
-                </picture>
-            </a>
-            <div class="burger-menu">
-                <span class="burger-line"></span>
-                <span class="burger-line"></span>
-            </div>
-        </div>
-    
+<header class="site-header">
+    <div class="container">
         <div class="social-links">
             <a href="https://wa.me/79165794892?text=Здравствуйте" target="_blank" aria-label="WhatsApp">
-                <img src="img/wa.png" alt="WhatsApp"> <!-- и здесь -->
+                <img src="img/wa.png" alt="WhatsApp">
             </a>
             <a href="https://t.me/alexeybasov" target="_blank" aria-label="Telegram">
-                <img src="img/tg.png" alt="Telegram"> <!-- и здесь -->
+                <img src="img/tg.png" alt="Telegram">
             </a>
-            <!-- ВОТ НОВАЯ КНОПКА -->
             <a href="#" id="email-copy-btn" aria-label="Скопировать email">
-                <img src="img/email.svg" alt="Email"> <!-- и здесь -->
+                <img src="img/email.svg" alt="Email">
             </a>
         </div>
-    </header>
+
+        <a href="index.html" class="logo">
+            <picture>
+                <source media="(max-width: 768px)" srcset="img/logo_portable.svg">
+                <img src="img/logo.svg" alt="Логотип">
+            </picture>
+        </a>
+
+        <div class="burger-menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </div>
+    </div>
+</header>
+
 
 <div class="slider-nav"></div>
 
@@ -144,4 +145,5 @@
         <p>Так же вы можете прочитать имя почты, нажав на меню.</p>
     </div>
 </body>
+
 </html>
