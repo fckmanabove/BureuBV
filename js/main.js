@@ -266,36 +266,6 @@ function initEmailCopy() {
         });
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // ИЗМЕНЕНИЕ: Мы ищем не контейнер, а конкретно картинку внутри него.
-    const logoImage = document.querySelector('.logo img'); 
-    const socialLinks = document.querySelector('.social-links');
-
-    // Проверка, что оба элемента найдены
-    if (!logoImage || !socialLinks) {
-        console.error("Не удалось найти логотип или блок социальных ссылок.");
-        return;
-    }
-
-    // Функция для выравнивания
-    function alignSocialLinks() {
-        // Получаем актуальные координаты самого ИЗОБРАЖЕНИЯ
-        const logoImageRect = logoImage.getBoundingClientRect();
-        
-        // Применяем отступ картинки к блоку соцсетей
-        socialLinks.style.left = `${logoImageRect.left}px`;
-    }
-
-    // Вызываем функцию один раз при загрузке
-    alignSocialLinks();
-
-    // И вызываем ее каждый раз при изменении размера окна
-    window.addEventListener('resize', alignSocialLinks);
-
-});
-
     // --- ЗАПУСК ВСЕХ ФУНКЦИЙ ---
     initOverlayMenu();
     initSubmenu();
@@ -303,4 +273,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initVerticalSlider();
     initHeroAnimation();
     initEmailCopy();
+
 });
