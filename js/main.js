@@ -235,6 +235,9 @@ async function runPreloader() {
 
     tl.timeScale(2);
 
+     // 4. НОВЫЙ ШАГ: Плавно и надёжно скрываем сам preloader с помощью GSAP
+    await gsap.to('.preloader', { autoAlpha: 0, duration: 0.4, ease: 'power2.in' });
+
     // 4. Теперь, когда контент скрылся, плавно убираем фон прелоадера
     document.body.classList.remove('is-loading');
     
@@ -277,4 +280,5 @@ function initEmailCopy() {
     initEmailCopy();
 
 });
+
 
