@@ -203,47 +203,55 @@ async function runPreloader() {
         return;
     }
 
-    // Собираем все элементы для анимации
     const logo = '.preloader-logo-row';
     const separator = '.preloader-separator';
     const taglineLines = '.preloader-tagline span';
-    // Теперь селектор снова выбирает из обоих контейнеров
     const servicesText = '.preloader-services-top span, .preloader-services-bottom span';
 
-    // Создаем временную шкалу анимации, но пока не запускаем
-    const tl = gsap.timeline({ paused: true });
+    // Создаем временную шкалу с колбэком onReverseComplete
+    // Этот колбэк — функция, которая гарантированно выполнится
+    // в момент, когда анимация ЗАВЕРШИТ свой обратный ход.
+    const tl = gsap.timeline({
+        paused: true,
+        onReverseComplete: () => {
+            // Когда реверс завершен, плавно скрываем сам прелоадер
+            gsap.to('.preloader', {
+                autoAlpha: 0,
+                duration: 0.4,
+                ease: 'power2.in',
+                onComplete: () => {
+                    // И только после этого убираем класс и запускаем
+                    // анимацию основного контента.
+                    document.body.classList.remove('is-loading');
+                    initHeroAnimation();
+                    tl.kill(); // Полностью "убиваем" анимацию, чтобы она не смогла ожить
+                }
+            });
+        }
+    });
 
-    // 1. Анимация появления логотипа
+    // --- Сборка анимации (остается без изменений) ---
     tl.to(logo, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'power2.out' });
-    // 2. Анимация разделителя
     tl.to(separator, { width: '100%', duration: 0.6, ease: 'power2.inOut' }, "-=0.3");
-    // 3. Появление строк слогана
     tl.to(taglineLines, { autoAlpha: 1, stagger: 0.1, duration: 0.4 }, "-=0.2");
-    // 4. Появление текста услуг
     tl.fromTo(servicesText, { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.5 }, "-=0.5");
 
-    // --- НОВАЯ ЛОГИКА ВОСПРОИЗВЕДЕНИЯ И РЕВЕРСА ---
+    // --- НОВАЯ, БОЛЕЕ НАДЁЖНАЯ ЛОГИКА ВОСПРОИЗВЕДЕНИЯ ---
 
-    // 1. Запускаем анимацию "вперёд" и ждём её завершения
+    // 1. Запускаем анимацию "вперёд"
     await tl.play();
 
-    // 2. Ждём 0.5 секунды, пока всё видно
+    // 2. Ждём 0.3 секунды
     await new Promise(resolve => setTimeout(resolve, 300));
-    
-    // 3. Запускаем анимацию "назад" и ждём её завершения
-    await tl.reverse();
 
+    // 3. Устанавливаем скорость для ОБРАТНОГО хода
     tl.timeScale(2);
 
-     // 4. НОВЫЙ ШАГ: Плавно и надёжно скрываем сам preloader с помощью GSAP
-    await gsap.to('.preloader', { autoAlpha: 0, duration: 0.4, ease: 'power2.in' });
-
-    // 4. Теперь, когда контент скрылся, плавно убираем фон прелоадера
-    document.body.classList.remove('is-loading');
-    
-    // 5. Запускаем анимацию появления контента на главной странице
-    initHeroAnimation();
+    // 4. Запускаем реверс. Мы не ждем его завершения через await,
+    // так как теперь за это отвечает колбэк onReverseComplete.
+    tl.reverse();
 }
+
 
 // --- Логика копирования Email и показа уведомления ---
 function initEmailCopy() {
@@ -280,5 +288,6 @@ function initEmailCopy() {
     initEmailCopy();
 
 });
+
 
 
