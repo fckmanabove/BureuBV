@@ -214,7 +214,7 @@ async function runPreloader() {
     const tl = gsap.timeline({ paused: true });
 
     // 1. Анимация появления логотипа
-    tl.to(logo, { autoAlpha: 1, scale: 1, duration: 0.8, ease: 'power2.out' });
+    tl.to(logo, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'power2.out' });
     // 2. Анимация разделителя
     tl.to(separator, { width: '100%', duration: 0.6, ease: 'power2.inOut' }, "-=0.3");
     // 3. Появление строк слогана
@@ -228,10 +228,12 @@ async function runPreloader() {
     await tl.play();
 
     // 2. Ждём 0.5 секунды, пока всё видно
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     // 3. Запускаем анимацию "назад" и ждём её завершения
     await tl.reverse();
+
+    tl.timeScale(2);
 
     // 4. Теперь, когда контент скрылся, плавно убираем фон прелоадера
     document.body.classList.remove('is-loading');
@@ -275,3 +277,4 @@ function initEmailCopy() {
     initEmailCopy();
 
 });
+
