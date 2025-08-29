@@ -217,7 +217,7 @@ async function runPreloader() {
             // Когда реверс завершен, плавно скрываем сам прелоадер
             gsap.to('.preloader', {
                 autoAlpha: 0,
-                duration: 0.4,
+                duration: 0.3,
                 ease: 'power2.in',
                 onComplete: () => {
                     // И только после этого убираем класс и запускаем
@@ -231,8 +231,8 @@ async function runPreloader() {
     });
 
     // --- Сборка анимации (остается без изменений) ---
-    tl.to(logo, { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'power2.out' });
-    tl.to(separator, { width: '100%', duration: 0.6, ease: 'power2.inOut' }, "-=0.3");
+    tl.to(logo, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
+    tl.to(separator, { width: '100%', duration: 0.5, ease: 'power2.inOut' }, "-=0.3");
     tl.to(taglineLines, { autoAlpha: 1, stagger: 0.1, duration: 0.4 }, "-=0.2");
     tl.fromTo(servicesText, { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.5 }, "-=0.5");
 
@@ -245,7 +245,7 @@ async function runPreloader() {
     await new Promise(resolve => setTimeout(resolve, 300));
 
     // 3. Устанавливаем скорость для ОБРАТНОГО хода
-    tl.timeScale(2);
+    tl.timeScale(1.1);
 
     // 4. Запускаем реверс. Мы не ждем его завершения через await,
     // так как теперь за это отвечает колбэк onReverseComplete.
@@ -288,6 +288,7 @@ function initEmailCopy() {
     initEmailCopy();
 
 });
+
 
 
 
