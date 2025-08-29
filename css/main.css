@@ -630,6 +630,34 @@ body.menu-is-open .burger-menu .burger-line:nth-child(2) {
         gap: 40px;
         /* Расстояние между всеми элементами */
     }
+    /* Поместите этот код внутрь блока @media (max-width: 768px) { ... } */
+
+/* --- Новая раскладка хедера на мобильных --- */
+.site-header .container {
+    /* 1. Переключаем на flexbox для простого выравнивания */
+    display: flex;
+    justify-content: space-between;
+
+    /* 2. Сбрасываем grid-раскладку с десктопа */
+    grid-template-columns: none;
+}
+
+.logo,
+.burger-menu {
+    /* 3. Сбрасываем их привязку к колонкам грида */
+    grid-column: auto;
+    justify-self: auto;
+}
+
+/* --- Позиционирование иконок соцсетей --- */
+.social-links {
+    /* 4. Фиксируем иконки относительно окна браузера */
+    position: fixed;
+    bottom: 30px;  /* 5. Прижимаем к низу */
+    left: 5%;      /* 6. Устанавливаем отступ слева */
+    z-index: 1000; /* 7. Отображаем поверх всего контента */
+}
+
     /* Явно указываем, что второй блок (Проекты) должен
        занять вторую строку и растянуться на обе колонки */
     .main-menu .menu-column:nth-child(2) {
@@ -981,3 +1009,4 @@ body.is-loading>.slider-nav {
     display: block;
 
 }
+
